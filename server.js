@@ -1,5 +1,3 @@
-// server.js
-
 const express = require('express');
 const axios = require('axios');
 const cheerio = require('cheerio');
@@ -8,6 +6,7 @@ const app = express();
 const port = 3000;
 
 app.use(express.json());
+
 
 app.get('/api/scrape', async (req, res) => {
   try {
@@ -45,6 +44,10 @@ app.get('/api/scrape', async (req, res) => {
     console.error(error);
     res.status(500).json({ error: 'Scraping process failed.' });
   }
+});
+
+app.get('/', (req, res) => {
+  res.send('Servidor está funcionando.');
 });
 
 app.listen(port, () => {
