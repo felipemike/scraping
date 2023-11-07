@@ -2,11 +2,15 @@ const express = require('express');
 const axios = require('axios');
 const cheerio = require('cheerio');
 const path = require('path');
+const cors = require('cors'); // Importe o pacote CORS
 
 const app = express();
 const port = 3000;
 
 app.use(express.json());
+
+// Configure o middleware CORS
+app.use(cors());
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
