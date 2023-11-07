@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Amazon Product Scraper</title>
   <style>
+    /* Estilos CSS para a página */
     body {
       font-family: Arial, sans-serif;
       text-align: center;
@@ -48,9 +49,12 @@
 <body>
   <h1>Amazon Product Scraper</h1>
   <div class="search-container">
+    <!-- Input para digitar a palavra-chave -->
     <input type="text" id="keyword" placeholder="Digite a palavra-chave">
-    <button id="search-button">Scraping</button>
+    <!-- Botão para iniciar a busca -->
+    <button id="search-button">Search</button>
   </div>
+  <!-- Container para exibir os resultados da busca -->
   <div id="results-container" class="results"></div>
 
   <script>
@@ -60,22 +64,25 @@
       const resultsContainer = document.getElementById('results-container');
 
       if (searchButton && keywordInput && resultsContainer) {
+        // Adiciona um ouvinte de evento quando o botão é clicado
         searchButton.addEventListener('click', () => {
           const keyword = keywordInput.value;
           if (keyword) {
-            resultsContainer.innerHTML = '';
+            resultsContainer.innerHTML = ''; // Limpa qualquer conteúdo anterior
 
+            // Envia uma solicitação de busca para o servidor
             fetch(`/api/scrape?keyword=${keyword}`)
               .then((response) => {
                 if (!response.ok) {
                   throw new Error('Falha na solicitação.');
                 }
-                return response.json();
+                return response.json(); // Converte a resposta em JSON
               })
               .then((data) => {
                 if (data.length === 0) {
                   resultsContainer.innerHTML = 'Nenhum resultado encontrado.';
                 } else {
+                  // Exibe os resultados na página
                   data.forEach((product) => {
                     const productDiv = document.createElement('div');
                     productDiv.classList.add('product');
