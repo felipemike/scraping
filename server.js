@@ -42,16 +42,17 @@ app.get('/api/scrape', async (req, res) => {
       $('.s-result-item').each((index, element) => {
         const title = $(element).find('h2 a').text().trim();
         const rating = $(element).find('.a-icon-star-small .a-icon-alt').text().trim();
-        const numReviews = $(element).find('.s-star-rating a').text().trim();
+        const numReviewsElement = $(element).find('span.a-size-base.s-underline-text');
+        const numReviews = numReviewsElement.text().trim();
         const imageURL = $(element).find('img').attr('src');
-
+      
         const product = {
           title,
           rating,
           numReviews,
           imageURL,
         };
-
+      
         products.push(product);
       });
 

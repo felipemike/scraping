@@ -5,6 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
+    "stop": "echo \"Server stopped\"",
+    "restart": "npm stop && npm start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Mike",
